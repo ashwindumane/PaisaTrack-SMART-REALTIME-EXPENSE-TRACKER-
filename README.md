@@ -13,18 +13,23 @@ A full-stack **MERN (MongoDB, Express, React, Node.js)** application that helps 
 ## 📸 Screenshots
 
 - **Login Page**
+  
   <img width="1190" height="774" alt="Screenshot 2025-07-17 234816" src="https://github.com/user-attachments/assets/4c83dac3-5094-463a-bab9-93e47d6b8eb0" />
 
 - **Dashboard**
+  
   <img width="1897" height="1015" alt="Screenshot 2025-07-17 233140" src="https://github.com/user-attachments/assets/71695fb0-0a8b-4be4-a7a2-71bd2ea4f9f8" />
 
 - **Financial Overview**
+  
   <img width="1919" height="1017" alt="Screenshot 2025-07-17 233102" src="https://github.com/user-attachments/assets/8f1e085f-80f0-4f87-b330-91f63d3a087d" />
     
 - **Income Page**
+  
   <img width="1899" height="1012" alt="Screenshot 2025-07-17 233025" src="https://github.com/user-attachments/assets/40c3922c-be8b-4eb9-ad30-0e0b68a5d97b" />
 
 - **Expense Page**
+  
   <img width="1919" height="1014" alt="Screenshot 2025-07-17 233001" src="https://github.com/user-attachments/assets/ef73009b-2c2d-4c41-8a35-88388d51b1f8" />
 
 ---
