@@ -1,23 +1,17 @@
 import React from 'react'
-import {
-  BrowserRouter as Router,
-  Routes,
-  Route,
-  Navigate
-} from "react-router-dom"
+import { Routes, Route, Navigate } from "react-router-dom"
 import Login from './pages/auth/Login'
 import SignUp from './pages/auth/SignUp'
 import Home from './pages/dashboard/Home'
 import Income from './pages/dashboard/Income'
 import Expense from './pages/dashboard/Expense'
 import UserProvider from './context/userContext'
-import {Toaster} from "react-hot-toast"
+import { Toaster } from "react-hot-toast"
 
 function App() {
   return (
     <UserProvider>
-    <div>
-      <Router>
+      <div>
         <Routes>
           <Route path='/' element={<Root />} />
           <Route path='/login' element={<Login />} />
@@ -26,18 +20,16 @@ function App() {
           <Route path='/income' element={<Income />} />
           <Route path='/expense' element={<Expense />} />
         </Routes>
-      </Router>
-    </div>
+      </div>
 
-
-    <Toaster
-      toastOptions={{
-        className:"",
-        style:{
-          fontSize:'13px'
-        },
-      }}
-    />
+      <Toaster
+        toastOptions={{
+          className: "",
+          style: {
+            fontSize: '13px'
+          },
+        }}
+      />
     </UserProvider>
   )
 }
@@ -45,13 +37,6 @@ function App() {
 export default App
 
 const Root = () => {
-  //check if token exists in localstorage
   const isAuthenticated = !!localStorage.getItem("token");
-
-  //Redirect to dashboard if authenticated, otherwise to login
-  return isAuthenticated ?(
-    <Navigate to="/dashboard" />
-  ):(
-    <Navigate to="/login" />
-  );
+  return isAuthenticated ? <Navigate to="/dashboard" /> : <Navigate to="/login" />;
 }
