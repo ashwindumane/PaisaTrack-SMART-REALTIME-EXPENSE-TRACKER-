@@ -5,7 +5,7 @@ A full-stack **MERN (MongoDB, Express, React, Node.js)** application that helps 
 ---
 ## 🔗 Live Demo
 
-- **🌐 Live Project:** [Paisa Track](https://paisatrack-smart-realtime-expense-t.vercel.app/login)  
+- **🌐 Live Project:** [Paisa Track](https://paisa-track-smart-realtime-expense.vercel.app/login)  
 - 🎥 **Video Preview:** [Watch Demo](https://github.com/user-attachments/assets/bdd029ba-2c72-4b7f-bcd0-eda1f14b347f)
 
 ---
