@@ -1,56 +1,56 @@
-import React, { useEffect, useContext, useState } from 'react';
-import AuthLayout from '../../components/layouts/AuthLayout';
-import { useNavigate, Link } from 'react-router-dom';
-import Input from '../../components/Inputs/Input';
-import ProfilePhotoSelector from '../../components/Inputs/ProfilePhotoSelector';
-import { validateEmail } from '../../utils/helper';
-import { API_PATHS } from '../../utils/apiPaths';
-import axiosInstance from '../../utils/axiosInstance';
-import { UserContext } from '../../context/userContext';
-import uploadImage from '../../utils/uploadImage';
-import { pingServer } from '../../utils/pingServer';
-import { toast } from 'react-hot-toast';
+import React, { useEffect, useContext, useState } from 'react'
+import AuthLayout from '../../components/layouts/AuthLayout'
+import { useNavigate, Link } from 'react-router-dom'
+import Input from '../../components/Inputs/Input'
+import ProfilePhotoSelector from '../../components/Inputs/ProfilePhotoSelector'
+import { validateEmail } from '../../utils/helper'
+import { API_PATHS } from '../../utils/apiPaths'
+import axiosInstance from '../../utils/axiosInstance'
+import { UserContext } from '../../context/userContext'
+import uploadImage from '../../utils/uploadImage'
+import { pingServer } from '../../utils/pingServer'
+import { toast } from 'react-hot-toast'
 
 function SignUp() {
-  const [profilePic, setProfilePic] = useState(null);
-  const [fullName, setFullName] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [error, setError] = useState(null);
+  const [profilePic, setProfilePic] = useState(null)
+  const [fullName, setFullName] = useState('')
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const [error, setError] = useState(null)
 
-  const { updateUser } = useContext(UserContext);
-  const navigate = useNavigate();
+  const { updateUser } = useContext(UserContext)
+  const navigate = useNavigate()
 
   useEffect(() => {
-    pingServer();
-  }, []);
+    pingServer()
+  }, [])
 
   const handleSignUp = async (e) => {
-    e.preventDefault();
+    e.preventDefault()
 
-    let profileImageUrl = '';
+    let profileImageUrl = ''
 
     if (!fullName) {
-      setError('Please enter your name');
-      return;
+      setError('Please enter your name')
+      return
     }
 
     if (!validateEmail(email)) {
-      setError('Please enter a valid email address');
-      return;
+      setError('Please enter a valid email address')
+      return
     }
 
     if (!password || password.length < 8) {
-      setError('Password must be at least 8 characters long');
-      return;
+      setError('Password must be at least 8 characters long')
+      return
     }
 
-    setError('');
+    setError('')
 
     try {
       if (profilePic) {
-        const imgUploadRes = await uploadImage(profilePic);
-        profileImageUrl = imgUploadRes.imageUrl || '';
+        const imgUploadRes = await uploadImage(profilePic)
+        profileImageUrl = imgUploadRes.imageUrl || ''
       }
 
       const response = await axiosInstance.post(API_PATHS.AUTH.REGISTER, {
@@ -58,36 +58,37 @@ function SignUp() {
         email,
         password,
         profileImageUrl,
-      });
+      })
 
-      const { token, user } = response.data;
+      const { token, user } = response.data
 
       if (token) {
-        localStorage.setItem('token', token);
-        updateUser(user);
-        toast.success(`Account created successfully. Welcome, ${user.fullName?.split(' ')[0] || 'User'}!`);
-        navigate('/dashboard');
+        localStorage.setItem('token', token)
+        updateUser(user)
+        toast.success(
+          `Account created successfully. Welcome, ${user.fullName?.split(' ')[0] || 'User'}!`
+        )
+        navigate('/dashboard')
       }
     } catch (error) {
-      if (error.response && error.response.data.message) {
-        setError(error.response.data.message);
+      if (error.response?.data.message) {
+        setError(error.response.data.message)
       } else {
-        setError('Something went wrong. Please try again');
+        setError('Something went wrong. Please try again')
       }
     }
-  };
+  }
 
   return (
     <AuthLayout>
-      <div className='lg:w-[100%] h-auto md:h-full mt-10 md:mt-0 flex flex-col justify-center'>
-        <h3 className='text-xl font-semibold text-black'>Create an Account</h3>
-        <p className='text-xs text-slate-700 mt-[5px] mb-6'>
+      <div className="w-full max-w-md sm:max-w-lg md:max-w-2xl lg:w-[100%] h-auto md:h-full mt-6 md:mt-0 flex flex-col justify-center mx-auto px-4">
+        <h3 className="text-xl md:text-2xl font-semibold text-black">Create an Account</h3>
+        <p className="text-sm md:text-base text-slate-700 mt-1 mb-6">
           Join us today by entering your details below.
         </p>
-        <form onSubmit={handleSignUp}>
+        <form onSubmit={handleSignUp} className="space-y-4">
           <ProfilePhotoSelector image={profilePic} setImage={setProfilePic} />
-
-          <div className='grid grid-cols-1 md:grid-cols-2 gap-4'>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <Input
               value={fullName}
               onChange={({ target }) => setFullName(target.value)}
@@ -95,7 +96,6 @@ function SignUp() {
               placeholder="John"
               type="text"
             />
-
             <Input
               value={email}
               onChange={({ target }) => setEmail(target.value)}
@@ -103,8 +103,7 @@ function SignUp() {
               placeholder="john@example.com"
               type="text"
             />
-
-            <div className='col-span-2'>
+            <div className="col-span-1 md:col-span-2">
               <Input
                 value={password}
                 onChange={({ target }) => setPassword(target.value)}
@@ -114,13 +113,10 @@ function SignUp() {
               />
             </div>
           </div>
-
-          {error && <p className='text-red-500 text-xs pb-2.5'>{error}</p>}
-
-          <button type='submit' className='btn-primary'>SIGN UP</button>
-
-          <p className='text-[13px] text-slate-800 mt-3'>
-            Already have an account?{" "}
+          {error && <p className="text-red-500 text-xs pb-2.5">{error}</p>}
+          <button type="submit" className="btn-primary w-full">SIGN UP</button>
+          <p className="text-[13px] text-slate-800 mt-3 text-center">
+            Already have an account?{' '}
             <Link className="font-medium text-primary underline" to="/login">
               Login
             </Link>
@@ -128,7 +124,7 @@ function SignUp() {
         </form>
       </div>
     </AuthLayout>
-  );
+  )
 }
 
-export default SignUp;
+export default SignUp

@@ -3,21 +3,21 @@ import { UserContext } from '../../context/userContext'
 import Navbar from "./Navbar"
 import SideMenu from "./SideMenu"
 
-const DashboardLayout = ({children, activeMenu}) => {
-    const {user} = useContext(UserContext)
+const DashboardLayout = ({ children, activeMenu }) => {
+  const { user } = useContext(UserContext)
   return (
-    <div className=''>
-        <Navbar activeMenu={activeMenu} />
+    <div>
+      <Navbar activeMenu={activeMenu} />
 
-        {user && (
-            <div className='flex'>
-                <div className='max-[1080px]:hidden'>
-                    <SideMenu activeMenu={activeMenu} />
-                </div>
+      {user && (
+        <div className='flex flex-col lg:flex-row'>
+          <div className='hidden lg:block'>
+            <SideMenu activeMenu={activeMenu} />
+          </div>
 
-                <div className='grow mx-5'>{children}</div>
-            </div>
-        )}
+          <div className='grow mx-4 md:mx-5'>{children}</div>
+        </div>
+      )}
     </div>
   )
 }
