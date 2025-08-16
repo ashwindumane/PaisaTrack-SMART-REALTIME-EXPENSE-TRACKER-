@@ -62,10 +62,16 @@ function Login() {
   return (
     <AuthLayout>
       <div className="w-full max-w-md sm:max-w-lg md:max-w-xl lg:w-[70%] h-auto md:h-full flex flex-col justify-center mx-auto px-4">
-        <h3 className="text-xl md:text-2xl font-semibold text-black">Welcome Back</h3>
-        <p className="text-sm md:text-base text-slate-700 mt-1 mb-6">
+        
+        {/* Heading */}
+        <h3 className="text-2xl md:text-3xl font-semibold text-black text-center">
+          Welcome Back
+        </h3>
+        <p className="text-sm md:text-base text-slate-700 text-center mt-2 mb-6">
           Please enter your details to log in
         </p>
+
+        {/* Form */}
         <form onSubmit={handleLogin} className="space-y-4">
           <Input
             value={email}
@@ -81,10 +87,16 @@ function Login() {
             placeholder="Min 8 Characters"
             type="password"
           />
-          {error && <p className="text-red-500 text-xs pb-2.5">{error}</p>}
+
+          {/* Error */}
+          {error && <p className="text-red-500 text-xs text-center">{error}</p>}
+
+          {/* Submit */}
           <button type="submit" className="btn-primary w-full">LOGIN</button>
+
+          {/* Redirect */}
           <p className="text-[13px] text-slate-800 mt-3 text-center">
-            Don't have an account?{' '}
+            Don&apos;t have an account?{' '}
             <Link className="font-medium text-primary underline" to="/signup">
               SignUp
             </Link>
